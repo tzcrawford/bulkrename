@@ -201,6 +201,7 @@ def refactor_recursive(current_dir: Path, refactor_check: Callable[[Path], bool]
 
     # Get: paths to refactor
     paths_to_refactor = [p for p in current_dir.iterdir() if refactor_check(p)]
+    paths_to_refactor.sort()
 
     # refactor paths
     # - if None is returned, that is an indication that the editor session
@@ -220,6 +221,7 @@ def refactor_recursive(current_dir: Path, refactor_check: Callable[[Path], bool]
 
     # list of valid directories
     new_directories = (d for d in current_dir.iterdir() if recurse_check(d))
+    new_directories.sort()
 
     # recursively refactor upon each of the valid directories.
     for d in new_directories:
